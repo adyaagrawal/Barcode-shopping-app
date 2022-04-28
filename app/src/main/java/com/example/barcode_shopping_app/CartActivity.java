@@ -118,7 +118,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 cartItems.clear();
-                Toast.makeText(getApplicationContext(), dataSnapshot.toString(), Toast.LENGTH_LONG).show();
 
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
                     CartItem item = dataSnapshot1.getValue(CartItem.class);

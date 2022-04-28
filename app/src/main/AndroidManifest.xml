@@ -24,11 +24,9 @@
         </activity>
         <activity android:name=".CartActivity"/>
         <activity android:name=".LoginActivity"/>
-        <activity android:name=".ProfileActivity"/>
         <activity android:name=".ResetPasswordActivity"/>
         <activity android:name=".ScanActivity"/>
         <activity android:name=".SignupActivity"/>
-        <activity android:name=".TransactionHistory"/>
     </application>
 
 </manifest>

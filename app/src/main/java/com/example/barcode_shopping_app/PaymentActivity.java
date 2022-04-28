@@ -43,32 +43,32 @@ public class PaymentActivity extends AppCompatDialog {
         TextView amount = findViewById(R.id.textView9);
         amount.setText(String.format("%.2f", value));
 
-        Button ecoButton = findViewById(R.id.button);
-        Button teleButton = findViewById(R.id.button4);
-        Button onemariButton = findViewById(R.id.button3);
+        Button gpayButton = findViewById(R.id.button);
+        Button paytmButton = findViewById(R.id.button3);
+        Button cardButton = findViewById(R.id.button4);
 
-        ecoButton.setOnClickListener(new View.OnClickListener() {
+        gpayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Paid with Ecocash $"+amount, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Paid with Gpay Rs."+value, Toast.LENGTH_LONG).show();
                 processTransaction(uid);
                 dismiss();
             }
         });
-        teleButton.setOnClickListener(new View.OnClickListener() {
+        paytmButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                Toast.makeText(getContext(), "Paid with Telecash $"+amount, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Paid with PayTM Rs."+value, Toast.LENGTH_LONG).show();
                 processTransaction(uid);
                 dismiss();
             }
         });
 
-        onemariButton.setOnClickListener(new View.OnClickListener() {
+        cardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getContext(), "Paid with OneMoney $"+amount, Toast.LENGTH_LONG).show();
+                Toast.makeText(getContext(), "Paid with Card Rs."+value, Toast.LENGTH_LONG).show();
                 processTransaction(uid);
                 dismiss();
             }
