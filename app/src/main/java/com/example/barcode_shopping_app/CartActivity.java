@@ -75,7 +75,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
         total = findViewById(R.id.textView8);
-        tempItems();
+        fetchCartItems();
         calculatePrice();
         btnCheckout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,22 +100,14 @@ public class CartActivity extends AppCompatActivity {
         lv.setAdapter(adapter);
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        fetchCartItems();
-        //tempItems();
-        calculatePrice();
-    }
 
     @SuppressLint("DefaultLocale")
     void calculatePrice(){
         value = 0.00;
         for(CartItem item: cartItems){
-            Log.d("price", String.format("%f %f %d ",item.getItemPrice()*item.getItemQty(), item.getItemPrice(), item.getItemQty()));
             value += item.getItemPrice()*item.getItemQty();
         }
-
+        Log.d("price",value.toString());
         total.setText(String.format("%.2f", value));
 
     }
@@ -126,7 +118,6 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 cartItems.clear();
-                Log.d("TK->TEST", dataSnapshot.toString());
                 Toast.makeText(getApplicationContext(), dataSnapshot.toString(), Toast.LENGTH_LONG).show();
 
                 for(DataSnapshot dataSnapshot1: dataSnapshot.getChildren()){
@@ -136,7 +127,7 @@ public class CartActivity extends AppCompatActivity {
 
                 CartItemList adapter = new CartItemList(CartActivity.this, cartItems);
                 lv.setAdapter(adapter);
-
+                calculatePrice();
             }
 
             @Override
@@ -145,6 +136,4 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
-
-
 }
