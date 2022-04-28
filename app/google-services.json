@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "975780739792",
+    "project_id": "barcode-shopping-app",
+    "storage_bucket": "barcode-shopping-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975780739792:android:03d003bf619f69c83dfcd5",
+        "android_client_info": {
+          "package_name": "com.example.barcode_shopping_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975780739792-6t5f6s1g60gamm26lad194crfebbip64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.barcode_shopping_app",
+            "certificate_hash": "53dac16342c9e54e5e7fd1dc5e56a386797dfc8b"
+          }
+        },
+        {
+          "client_id": "975780739792-4s8n7hhr50qq8lm1n3b00sug5r9i1ck7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDqH0dTBybMSk_gM4f39Ose-bO5SVTlUbM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975780739792-4s8n7hhr50qq8lm1n3b00sug5r9i1ck7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
