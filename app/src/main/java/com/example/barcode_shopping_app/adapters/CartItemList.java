@@ -65,7 +65,7 @@ public class CartItemList extends ArrayAdapter<CartItem>  {
                 CartActivity.deleteCartItem(cartItem);
             }
         });
-        String description = String.format("US $%.2f", cartItem.getItemPrice());
+        String description = String.format("Rs. %.2f", cartItem.getItemPrice());
         itemDescription.setText(description);
         itemQty.setText(String.format("Quantity: %d", cartItem.getItemQty()));
 
