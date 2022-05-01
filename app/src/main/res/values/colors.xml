@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimaryDark">#001447</color>
-    <color name="colorPrimary">#00227B</color>
-    <color name="colorAccent">#003EE0</color>
-    <color name="buttonColor">#0030AD</color>
+    <color name="colorPrimaryDark">#5E3902</color>
+    <color name="colorPrimary">#48A003</color>
+    <color name="colorAccent">#58B60F</color>
+    <color name="buttonColor">#367802</color>
     <color name="background">#E4E4E4</color>
     <color name="onemoney">#AD6200</color>
     <color name="telecash">#AD0023</color>
