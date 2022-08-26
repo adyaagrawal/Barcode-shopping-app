@@ -36,7 +36,7 @@ public class PaymentActivity extends AppCompatDialog {
     public PaymentActivity(@NonNull Context context, @NonNull Double value, @NonNull String uid){
         super(context, resolveDialogTheme(context));
 
-        setTitle("Payment");
+        setTitle("Payment Activity");
         setContentView(R.layout.dialog_payment);
 
         findViewById(R.id.close).setOnClickListener(v -> dismiss());
@@ -80,7 +80,7 @@ public class PaymentActivity extends AppCompatDialog {
 
     private static int resolveDialogTheme(@NonNull Context context) {
         TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(androidx.appcompat.R.attr.alertDialogTheme, outValue, true);
+        context.getTheme().resolveAttribute(R.attr.alertDialogTheme, outValue, true);
         return outValue.resourceId;
     }
 

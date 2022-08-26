@@ -23,8 +23,8 @@ import android.widget.Toast;
 
 public class SignupActivity extends AppCompatActivity {
 
-    private EditText inputEmail, inputPassword;
-    private Button btnSignIn, btnSignUp, btnResetPassword;
+    private EditText inputEmail, inputPassword, inputname;
+    private Button btnSignUp;
     private FirebaseAuth auth;
     private ProgressBar progressBar;
 
@@ -46,8 +46,9 @@ public class SignupActivity extends AppCompatActivity {
         //btnSignIn = ()
         btnSignUp = (Button) findViewById(R.id.btn_signup);
         inputEmail = (EditText) findViewById(R.id.email);
+        inputname = (EditText) findViewById(R.id.name);
         inputPassword = (EditText) findViewById(R.id.password);
-        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar3);
 
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -59,7 +60,14 @@ public class SignupActivity extends AppCompatActivity {
 
                 String email = inputEmail.getText().toString().trim();
                 String password = inputPassword.getText().toString().trim();
+                String name = inputname.getText().toString().trim();
 
+                if(TextUtils.isEmpty(name)){
+                    Toast.makeText(getApplicationContext(), "Enter Name!", Toast.LENGTH_SHORT).show();
+                    btnSignUp.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.INVISIBLE);
+                    return;
+                }
                 if(TextUtils.isEmpty(email)){
                     Toast.makeText(getApplicationContext(), "Enter email address!", Toast.LENGTH_SHORT).show();
                     btnSignUp.setVisibility(View.VISIBLE);
@@ -89,7 +97,7 @@ public class SignupActivity extends AppCompatActivity {
                                     startActivity(intent);
                                 }else {
                                     Log.d("signup",task.getException().toString());
-                                    Toast.makeText(getApplicationContext(), "Failed to login", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Failed to signup", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });

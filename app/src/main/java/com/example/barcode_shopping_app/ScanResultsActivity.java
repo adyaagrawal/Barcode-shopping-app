@@ -81,7 +81,7 @@ public class ScanResultsActivity extends AppCompatDialog {
             Objects.requireNonNull(button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Save pressed", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Item added to cart", Toast.LENGTH_LONG).show();
                     postToCart(cartItem);
                 }
             });
@@ -95,7 +95,7 @@ public class ScanResultsActivity extends AppCompatDialog {
 
     private static int resolveDialogTheme(@NonNull Context context) {
         TypedValue outValue = new TypedValue();
-        context.getTheme().resolveAttribute(androidx.appcompat.R.attr.alertDialogTheme, outValue, true);
+        context.getTheme().resolveAttribute(R.attr.alertDialogTheme, outValue, true);
         return outValue.resourceId;
     }
 

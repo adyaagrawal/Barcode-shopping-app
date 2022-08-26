@@ -113,7 +113,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
-        android:text="0"
+        android:text="1"
         android:textAlignment="center"
         app:layout_constraintBottom_toTopOf="@+id/close"
         app:layout_constraintEnd_toStartOf="@+id/button7"

@@ -24,7 +24,7 @@ public class LoginActivity extends AppCompatActivity {
     private EditText inputEmail, inputPassword;
     private FirebaseAuth auth;
     private Button btnLogin;
-    private TextView tvSignup, tvForget;
+    private TextView tvSignup;
     private ProgressBar progressBar;
     private String uid = "";
 
@@ -32,7 +32,7 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         auth = FirebaseAuth.getInstance();
-
+        getSupportActionBar().setTitle("Log in");
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if(user != null){
             uid = user.getUid();
@@ -46,11 +46,10 @@ public class LoginActivity extends AppCompatActivity {
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 //        setSupportActionBar(toolbar);
 
-        inputEmail = (EditText) findViewById(R.id.email);
-        inputPassword = (EditText) findViewById(R.id.password);
-        tvSignup = findViewById(R.id.tvsignup);
-        btnLogin = (Button) findViewById(R.id.btn_login);
-        tvForget = findViewById(R.id.tvforget);
+        inputEmail = (EditText) findViewById(R.id.emaillogin);
+        inputPassword = (EditText) findViewById(R.id.passlogin);
+        tvSignup = findViewById(R.id.textspuser);
+        btnLogin = (Button) findViewById(R.id.loginuser);
         progressBar = (ProgressBar) findViewById(R.id.progressBar2);
         progressBar.setVisibility(View.INVISIBLE);
 
@@ -64,13 +63,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        tvForget.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(LoginActivity.this, ResetPasswordActivity.class));
-                //Toast.makeText(getApplicationContext(), "Forget", Toast.LENGTH_SHORT).show();
-            }
-        });
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

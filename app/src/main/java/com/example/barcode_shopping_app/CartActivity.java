@@ -113,6 +113,7 @@ public class CartActivity extends AppCompatActivity {
     }
 
     void fetchCartItems(){
+        Toast.makeText(getApplicationContext(),"Loading Cart",Toast.LENGTH_SHORT).show();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference("cart_list").child(uid);
         rootRef.addValueEventListener(new ValueEventListener() {
             @Override
