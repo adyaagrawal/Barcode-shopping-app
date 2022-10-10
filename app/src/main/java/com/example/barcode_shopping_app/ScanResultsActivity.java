@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
@@ -13,10 +14,13 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDialog;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.zxing.Result;
@@ -30,6 +34,8 @@ import java.util.Objects;
 public class ScanResultsActivity extends AppCompatDialog {
     private DatabaseReference databaseReference;
     private String uid;
+    public int already;
+    CartItem cartItem;
     
     public ScanResultsActivity(@NonNull Context context, Product product, @NonNull Result result, Boolean condition){
         super(context, resolveDialogTheme(context));
@@ -47,7 +53,22 @@ public class ScanResultsActivity extends AppCompatDialog {
             setContentView(R.layout.dialog_scan_result_normal);
             ((TextView) findViewById(R.id.result)).setText("You scanned "+product.getName()+" successfully");
 
-            CartItem cartItem = new CartItem(product.getId(), product.getName(), product.getUnitPrice(),1,"");
+            FirebaseDatabase.getInstance().getReference("cart_list").child(uid).child(product.getId()).child("itemQty")
+                    .get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DataSnapshot> task) {
+                    if (!task.isSuccessful()) {
+                        Log.e("firebase", "Error getting data", task.getException());
+                    }
+                    else {
+                        long a=(long)task.getResult().getValue();
+                        already=(int)a;
+                        Log.d("firebase", String.valueOf(already+1));
+                        cartItem = new CartItem(product.getId(), product.getName(), product.getUnitPrice(),(already+1),"");
+                    }
+                }
+            });
+
 
             Button increase = (Button) findViewById(R.id.button7);
             Button decrease = (Button) findViewById(R.id.button6);
@@ -81,7 +102,7 @@ public class ScanResultsActivity extends AppCompatDialog {
             Objects.requireNonNull(button).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(getContext(), "Item added to cart", Toast.LENGTH_LONG).show();
+                    Log.d("firebase", String.valueOf(cartItem.getItemQty()));
                     postToCart(cartItem);
                 }
             });
@@ -106,7 +127,8 @@ public class ScanResultsActivity extends AppCompatDialog {
         databaseReference.child(cartItem.getProductId()).setValue(cartItem).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void aVoid) {
-                //Log.d("TK-TEST-POST", "Success");
+                Log.d("firebase",String.valueOf(cartItem.getItemQty()));
+                Toast.makeText(getContext(), "Item added to cart", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
