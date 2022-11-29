@@ -37,8 +37,8 @@ public class CartActivity extends AppCompatActivity {
     private String uid;
     private ListView lv;
     private Button btnCheckout;
-    private TextView total;
-    private Double value=0.00;
+    private static TextView total;
+    private static Double value=0.00;
 
     public static void deleteCartItem(CartItem cartItem){
         cartItems.remove(cartItem);
@@ -102,7 +102,7 @@ public class CartActivity extends AppCompatActivity {
 
 
     @SuppressLint("DefaultLocale")
-    void calculatePrice(){
+    public static void calculatePrice(){
         value = 0.00;
         for(CartItem item: cartItems){
             value += item.getItemPrice()*item.getItemQty();

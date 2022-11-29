@@ -54,17 +54,28 @@ public class CartItemList extends ArrayAdapter<CartItem>  {
             public void onClick(View view) {
                 Toast.makeText(getContext(), "increase quantity of item: "+cartItem.getItemName(), Toast.LENGTH_SHORT).show();
                 cartItem.setItemQty(cartItem.getItemQty() + 1);
-                itemQty.setText(""+cartItem.getItemQty());
+                itemQty.setText("Quantity: "+cartItem.getItemQty());
+
+                CartActivity.calculatePrice();
+
+                if(cartItem.getItemQty() > 1){
+                    decreaseQuantity.setEnabled(true);
+                }
             }
         });
 
         decreaseQuantity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(cartItem.getItemQty() > 0){
+                if(cartItem.getItemQty() > 1){
                     Toast.makeText(getContext(), "decrease quantity of item: "+cartItem.getItemName(), Toast.LENGTH_SHORT).show();
                     cartItem.setItemQty(cartItem.getItemQty() - 1);
-                    itemQty.setText(""+cartItem.getItemQty());
+                    itemQty.setText("Quantity: "+cartItem.getItemQty());
+
+                    CartActivity.calculatePrice();
+                }
+                if(cartItem.getItemQty() == 1){
+                    decreaseQuantity.setEnabled(false);
                 }
             }
         });
