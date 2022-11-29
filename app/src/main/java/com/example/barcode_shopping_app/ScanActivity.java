@@ -73,7 +73,8 @@ public class ScanActivity extends AppCompatActivity {
 
         mCodeScanner.setDecodeCallback(result -> ScanActivity.this.runOnUiThread(() -> {
             Log.d("scanner","Result: "+result.getText());
-            Product resultProduct = lookupProduct(result.getText());
+            //Product resultProduct = lookupProduct(result.getText());
+            Product resultProduct = lookupProduct("9788192910901");
 
             if(resultProduct == null){
                 Log.d("scanner","no products");
